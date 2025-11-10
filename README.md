@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./
+      - uses: tractorzoom/action-release-notes-to-confluence@v1
         with:
           tag: ${{ inputs.tag || github.event.release.tag_name }}
           confluence-api-token: ${{ secrets.CONFLUENCE_API_TOKEN }}
