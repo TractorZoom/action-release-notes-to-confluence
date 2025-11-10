@@ -1,0 +1,47 @@
+name: "Release Notes to Confluence"
+description: "Fetch release-drafter notes for a tag, expand PR details and images, convert to Confluence storage HTML, and publish under a parent page."
+author: "data-diesel"
+
+inputs:
+  tag:
+    description: "Tag (e.g. v1.2.3). If omitted, uses the tag from a release event."
+    required: false
+  github-token:
+    description: "GitHub token for API calls (defaults to GITHUB_TOKEN)."
+    required: false
+    default: "${{ github.token }}"
+  confluence-api-token:
+    description: "Atlassian API token."
+    required: true
+  confluence-base-url:
+    description: "Base URL, e.g. https://your-domain.atlassian.net/wiki"
+    required: true
+  confluence-email:
+    description: "Atlassian account email."
+    required: true
+  confluence-space-key:
+    description: "Confluence space key."
+    required: true
+  confluence-parent-page-id:
+    description: "Confluence parent page ID to create the release page under."
+    required: true
+  confluence-page-title-format:
+    description: "Page title template. Supports ${tag} and ${releaseName} placeholders."
+    required: false
+    default: "Release Notes for ${tag}"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
+
+outputs:
+  confluence-page-id:
+    description: "The ID of the created Confluence page"
+  confluence-page-url:
+    description: "The URL of the created Confluence page"
+
+branding:
+  icon: "upload-cloud"
+  color: "blue"
+
+
