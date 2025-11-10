@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./
         with:
-          tag: ${{ inputs.tag }}
+          tag: ${{ inputs.tag || github.event.release.tag_name }}
           confluence-api-token: ${{ secrets.CONFLUENCE_API_TOKEN }}
           confluence-base-url: ${{ secrets.CONFLUENCE_BASE_URL }}
           confluence-email: ${{ secrets.CONFLUENCE_EMAIL }}
