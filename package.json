@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "ncc build src/index.ts -o dist",
     "dev": "tsc -w",
     "local": "node scripts/local-run.js"
   },
@@ -22,7 +22,8 @@
   "devDependencies": {
     "@types/node": "^20.11.30",
     "dotenv": "^16.4.5",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "@vercel/ncc": "^0.38.1"
   }
 }
 
